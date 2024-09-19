@@ -1,0 +1,16 @@
+com\carteiraInvestimentos\demo\repository\CotacaoRepository.class
+com\carteiraInvestimentos\demo\DemoApplication.class
+com\carteiraInvestimentos\demo\domain\Ativo$AtivoBuilder.class
+com\carteiraInvestimentos\demo\service\CRUDService.class
+com\carteiraInvestimentos\demo\config\TimeZoneConfig.class
+com\carteiraInvestimentos\demo\exceptions\OperacaoInvalidaException.class
+com\carteiraInvestimentos\demo\response\AtivoResponse.class
+com\carteiraInvestimentos\demo\enums\TipoAtivo.class
+com\carteiraInvestimentos\demo\exceptions\RegistroIncompletoException.class
+com\carteiraInvestimentos\demo\service\AtivoService.class
+com\carteiraInvestimentos\demo\domain\Cotacao.class
+com\carteiraInvestimentos\demo\repository\AtivoRepository.class
+com\carteiraInvestimentos\demo\filtro\AtivoFiltro.class
+com\carteiraInvestimentos\demo\domain\Ativo.class
+com\carteiraInvestimentos\demo\domain\Cotacao$CotacaoBuilder.class
+com\carteiraInvestimentos\demo\request\AtivoRequest.class

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+
+    <changeSet id="carteira-dml_01.01" author="guilherme.baccarin">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ativo" schemaName="carteira"/>
+            </not>
+        </preConditions>
+
+        <createSequence sequenceName="ativo_id_seq" startValue="1" incrementBy="1"
+                        schemaName="carteira"/>
+
+        <createTable tableName="ativo" schemaName="carteira">
+            <column name="id" type="BIGINT" defaultValue="nextval('carteira.ativo_id_seq')">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ticker" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tipo" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="valor_patrimonial" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <addUniqueConstraint tableName="ativo" schemaName="carteira" columnNames="ticker"
+                             constraintName="unique_ativo_ticker"/>
+    </changeSet>
+
+
+    <changeSet id="carteira-dml_01.02" author="guilherme.baccarin">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="cotacao" schemaName="carteira"/>
+            </not>
+        </preConditions>
+
+        <createSequence sequenceName="cotacao_id_seq" startValue="1" incrementBy="1"
+                        schemaName="carteira"/>
+
+        <createTable tableName="cotacao" schemaName="carteira">
+            <column name="id" type="BIGINT" defaultValue="nextval('carteira.cotacao_id_seq')">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ativo_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="preco" type="NUMERIC">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="cotacao" baseColumnNames="ativo_id" baseTableSchemaName="carteira"
+                                 constraintName="fk_cotacao_ativo_usuario" referencedTableName="ativo"
+                                 referencedColumnNames="id" referencedTableSchemaName="carteira" />
+
+
+    </changeSet>
+
+
+</databaseChangeLog>
